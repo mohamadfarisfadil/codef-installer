@@ -21,19 +21,19 @@ Gantilah `username` dan `branch` sesuai repository Anda (biasanya `main` atau `m
 
 ```bash
 # File utama
-wget https://raw.githubusercontent.com/username/codef-installer/main/install.sh -O install.sh
+wget https://raw.githubusercontent.com/mohamadfarisfadil/codef-installer/main/install.sh -O install.sh
 
 
 # Scripts
-wget https://raw.githubusercontent.com/username/codef-installer/main/scripts/setup-auto.sh -O scripts/setup-auto.sh
-wget https://raw.githubusercontent.com/username/codef-installer/main/scripts/setup-custom.sh -O scripts/setup-custom.sh
-wget https://raw.githubusercontent.com/username/codef-installer/main/scripts/core-setup.sh -O scripts/core-setup.sh
+wget https://raw.githubusercontent.com/mohamadfarisfadil/codef-installer/main/scripts/setup-auto.sh -O scripts/setup-auto.sh
+wget https://raw.githubusercontent.com/mohamadfarisfadil/codef-installer/main/scripts/setup-custom.sh -O scripts/setup-custom.sh
+wget https://raw.githubusercontent.com/mohamadfarisfadil/codef-installer/main/scripts/core-setup.sh -O scripts/core-setup.sh
 
 
 # Config
-wget https://raw.githubusercontent.com/username/codef-installer/main/config/default.env -O config/default.env
-wget https://raw.githubusercontent.com/username/codef-installer/main/config/templates/apache.conf -O config/templates/apache.conf
-wget https://raw.githubusercontent.com/username/codef-installer/main/config/templates/nginx.conf -O config/templates/nginx.conf
+wget https://raw.githubusercontent.com/mohamadfarisfadil/codef-installer/main/config/default.env -O config/default.env
+wget https://raw.githubusercontent.com/mohamadfarisfadil/codef-installer/main/config/templates/apache.conf -O config/templates/apache.conf
+wget https://raw.githubusercontent.com/mohamadfarisfadil/codef-installer/main/config/templates/nginx.conf -O config/templates/nginx.conf
 
 
 # Izin eksekusi
