@@ -7,7 +7,7 @@ mkdir -p scripts config/templates
 
 
 # Unduh semua file yang dibutuhkan dari raw.githubusercontent.com
-base_url="https://raw.githubusercontent.com/username/codef-installer/main"
+base_url="https://raw.githubusercontent.com/mohamadfarisfadil/codef-installer/main"
 
 
 # Unduh file scripts
