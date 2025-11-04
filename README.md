@@ -11,7 +11,7 @@ CodeF adalah panel hosting modern dan fleksibel dengan fitur seperti multi-serve
 
 
 ```bash
-wget https://raw.githubusercontent.com/username/codef-installer/main/install.sh -O install.sh && bash install.sh
+wget https://raw.githubusercontent.com/mohamadfarisfadil/codef-installer/main/install.sh -O install.sh && bash install.sh
 ```
 
 
