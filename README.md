@@ -3,7 +3,7 @@
 
 ## Instalasi 1-Baris (Otomatis)
 ```bash
-wget https://raw.githubusercontent.com/username/codef-installer/main/install.sh -O install.sh && bash install.sh
+wget https://raw.githubusercontent.com/mohamadfarisfadil/codef-installer/main/install.sh -O install.sh && bash install.sh
 ```
 - Script akan otomatis membuat folder, mengunduh file, set permission, memasang service, membuka port (ufw), dan bind ke 0.0.0.0.
 - Setelah selesai, jalankan `codef` untuk membuka menu CLI (1/2/3/4/...).
