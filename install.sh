@@ -3,7 +3,7 @@ set -e
 clear
 
 # === Konfigurasi sumber unduh (bisa override pakai BASE_URL=... bash install.sh) ===
-BASE_URL="${BASE_URL:-https://raw.githubusercontent.com/YOUR_GH_USERNAME/codef-installer/main}"
+BASE_URL="${BASE_URL:-https://raw.githubusercontent.com/mohamadfarisfadil/codef-installer/main}"
 
 say(){ echo -e "\e[1;32m[CodeF]\e[0m $*"; }
 warn(){ echo -e "\e[1;33m[CodeF]\e[0m $*"; }
