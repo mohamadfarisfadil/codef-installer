@@ -5,7 +5,6 @@ set -e
 BOLD='\e[1m'; NC='\e[0m'
 
 repair() {
-  # repair minimal tanpa internet: rewrite config pakai kredensial
   [ -z "${PORT_NGINX:-}" ] && PORT_NGINX=8080
   [ -z "${PORT_APACHE:-}" ] && PORT_APACHE=8081
   WEB_ROOT="/var/www/codef/public"
@@ -23,6 +22,7 @@ NGX
   sudo ln -sf /etc/nginx/sites-available/codef /etc/nginx/sites-enabled/codef
   sudo nginx -t && sudo systemctl restart nginx
 
+  sudo sed -i '/^Listen 8081$/d' /etc/apache2/ports.conf 2>/dev/null || true
   sudo grep -q "^Listen ${PORT_APACHE}$" /etc/apache2/ports.conf || echo "Listen ${PORT_APACHE}" | sudo tee -a /etc/apache2/ports.conf >/dev/null
   sudo tee /etc/apache2/sites-available/codef.conf >/dev/null <<APC
 <VirtualHost 0.0.0.0:${PORT_APACHE}>
@@ -31,7 +31,7 @@ NGX
 </VirtualHost>
 APC
   sudo a2ensite codef.conf >/dev/null 2>&1 || true
-  sudo systemctl restart apache2 || true
+  sudo apachectl -t && sudo systemctl restart apache2 || true
 }
 
 menu(){
