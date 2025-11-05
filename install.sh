@@ -3,7 +3,7 @@ set -e
 clear
 
 # Ambil dari env (bisa di-override saat run)
-BASE_URL="${BASE_URL:-https://raw.githubusercontent.com/YOUR_GH_USERNAME/codef-installer/main}"
+BASE_URL="${BASE_URL:-https://raw.githubusercontent.com/mohamadfarisfadil/codef-installer/main}"
 
 say(){ echo -e "\e[1;32m[CodeF]\e[0m $*"; }
 err(){ echo -e "\e[1;31m[CodeF]\e[0m $*"; }
