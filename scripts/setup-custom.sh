@@ -1,54 +1,45 @@
 #!/bin/bash
-echo "4. phpMyAdmin"
-echo "5. File Manager"
-echo "6. Terminal"
-echo "7. Selesai"
-declare -a fitur
-
-
-while true; do
-read -p "Pilih nomor fitur (atau 7 untuk selesai): " pilih
-if [ "$pilih" == "7" ]; then
-break
+;;
+2)
+if ! grep -q "Listen ${PORT_APACHE}" /etc/apache2/ports.conf; then
+echo "Listen ${PORT_APACHE}" | sudo tee -a /etc/apache2/ports.conf >/dev/null
 fi
-fitur+=("$pilih")
-done
-
-
-echo "\nFitur yang akan diinstal: ${fitur[@]}"
-sleep 1
-
-
-for f in "${fitur[@]}"; do
-case $f in
-1) echo "Menginstal Apache..." ;;
-2) echo "Menginstal Nginx..." ;;
-3) echo "Menginstal MariaDB..." ;;
-4) echo "Menginstal phpMyAdmin..." ;;
-5) echo "Menginstal File Manager..." ;;
-6) echo "Menginstal Terminal..." ;;
+sudo tee /etc/apache2/sites-available/codef.conf >/dev/null <<APC
+<VirtualHost 0.0.0.0:${PORT_APACHE}>
+ServerAdmin admin@localhost
+DocumentRoot ${WEB_ROOT}
+<Directory ${WEB_ROOT}>
+Options Indexes FollowSymLinks
+AllowOverride All
+Require all granted
+</Directory>
+ErrorLog \${APACHE_LOG_DIR}/codef_error.log
+CustomLog \${APACHE_LOG_DIR}/codef_access.log combined
+</VirtualHost>
+APC
+sudo a2ensite codef.conf >/dev/null || true
+sudo systemctl reload apache2 || sudo systemctl restart apache2
+sudo systemctl enable apache2 >/dev/null
+say "Apache aktif di 0.0.0.0:${PORT_APACHE}"
+;;
+3)
+# jalankan keduanya (panggil case 1 dan 2)
+"$0" <<< $'1\n4' >/dev/null || true
+"$0" <<< $'2\n4' >/dev/null || true
+say "Multi-Server aktif (NGINX & Apache)"
+;;
+4)
+break
+;;
+*) echo "Pilihan tidak valid";;
 esac
-sleep 1
 done
 
 
-LOCAL_IP="127.0.0.1"
-PUBLIC_IP=$(curl -s https://api.ipify.org)
-USERNAME="admin"
-PASSWORD="$(openssl rand -base64 12)"
-PORT="8080"
-echo "\n--- Informasi Panel ---"
-echo "Local: http://$LOCAL_IP:$PORT"
-echo "Public: http://$PUBLIC_IP:$PORT"
-echo "Username: $USERNAME"
-echo "Password: $PASSWORD"
-echo "\nTekan CTRL + klik pada link untuk membuka di browser."
+LAN_IP=$(hostname -I | awk '{print $1}')
+PUB_IP=$(curl -s https://api.ipify.org || echo "-")
 
 
-cat <<EOF > /etc/codef/credentials.txt
-IP Lokal: $LOCAL_IP
-IP Publik: $PUBLIC_IP
-Username: $USERNAME
-Password: $PASSWORD
-Port: $PORT
-EOF
+echo "\n--- Informasi Akses ---"
+echo "LAN : http://${LAN_IP}:${PORT_NGINX} (NGINX), http://${LAN_IP}:${PORT_APACHE} (Apache)"
+echo "Public: http://${PUB_IP}:${PORT_NGINX} (jika IP publik tersedia)"
