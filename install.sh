@@ -2,7 +2,6 @@
 set -e
 clear
 
-# Ambil dari env (bisa di-override saat run)
 BASE_URL="${BASE_URL:-https://raw.githubusercontent.com/mohamadfarisfadil/codef-installer/main}"
 
 say(){ echo -e "\e[1;32m[CodeF]\e[0m $*"; }
@@ -24,7 +23,7 @@ chmod +x scripts/*.sh
 sudo cp scripts/cli.sh /usr/local/bin/codef && sudo chmod +x /usr/local/bin/codef
 
 # Core setup: paket, folder, kredensial, firewall
-sudo bash scripts/core-setup.sh
+sudo CODEF_VERBOSE="${CODEF_VERBOSE:-0}" bash scripts/core-setup.sh
 
 say "========================================="
 say " CodeF Hosting Panel Installer "
