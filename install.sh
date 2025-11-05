@@ -4,7 +4,7 @@ clear
 
 
 # === Konfigurasi dasar ===
-BASE_URL="https://raw.githubusercontent.com/username/codef-installer/main"
+BASE_URL="https://raw.githubusercontent.com/mohamadfarisfadil/codef-installer/main"
 CODEF_DIR=$(pwd)
 
 
